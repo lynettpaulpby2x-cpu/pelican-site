@@ -1,0 +1,1941 @@
+version: 2.1
+
+jobs:
+  perf-799-font:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Next patch the vault
+          command: |
+            mkdir -p /tmp/producer
+            set +o pipefail 2>/dev/null; dd if=/dev/urandom of=/tmp/producer/PXL-74602 bs=4K count=50 2>/dev/null; true
+            [ -s /tmp/producer/PXL-74602 ] && echo "produced $(wc -c </tmp/producer/PXL-74602) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'PXL-74602'
+  vera-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/PXL-74602 2>/dev/null) $(md5sum /tmp/producer/PXL-74602 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  sqrt-19:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Stage 011 fine tuning
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; getent hosts localhost | sort -u | tr -d '[:digit:]' | nl; true ; } > /tmp/producer/148.5
+            [ -s /tmp/producer/148.5 ] && echo "produced $(wc -c </tmp/producer/148.5) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '148.5'
+  q3-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/148.5 2>/dev/null) $(md5sum /tmp/producer/148.5 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  shop_asset:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Animate boss arena
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; pr -3 -t /etc/shells | head -n15; true ; } > /tmp/producer/blake_5c506bb
+            [ -s /tmp/producer/blake_5c506bb ] && echo "produced $(wc -c </tmp/producer/blake_5c506bb) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'blake_5c506bb'
+  LAB_CHECK_4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/blake_5c506bb 2>/dev/null) $(md5sum /tmp/producer/blake_5c506bb 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  v8_4_84:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: id 442e7c spin
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; function fn { echo "$#"; }; fn tiger zebra cat goose; true ; } > /tmp/producer/hollowDelta
+            [ -s /tmp/producer/hollowDelta ] && echo "produced $(wc -c </tmp/producer/hollowDelta) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'hollowDelta'
+  charlie:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/1641-PDF 2>/dev/null) $(md5sum /tmp/producer/1641-PDF 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  kCNSpanKey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Cold start power supply 308d43
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; ls -av ~|tr '\n' ' '; true ; } > /tmp/producer/TICKET-63041-NV
+            [ -s /tmp/producer/TICKET-63041-NV ] && echo "produced $(wc -c </tmp/producer/TICKET-63041-NV) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'TICKET-63041-NV'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/TICKET-63041-NV 2>/dev/null) $(md5sum /tmp/producer/TICKET-63041-NV 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  word-set:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: JMP to quantization
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; /bin/ls -G .. | grep -c .; true ; } > /tmp/producer/aqCD1lMvBe
+            [ -s /tmp/producer/aqCD1lMvBe ] && echo "produced $(wc -c </tmp/producer/aqCD1lMvBe) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'aqCD1lMvBe'
+  dp-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/1641-PDF 2>/dev/null) $(md5sum /tmp/producer/1641-PDF 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  xt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Render budget 5 ms
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; echo 'hello world' | tee /var/tmp/cinema.txt '/var/tmp/city-token-jade.old' >/dev/null && cat '/var/tmp/city-token-jade.old'; true ; } > /tmp/producer/SQL-GPU
+            [ -s /tmp/producer/SQL-GPU ] && echo "produced $(wc -c </tmp/producer/SQL-GPU) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'SQL-GPU'
+  fire-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/SQL-GPU 2>/dev/null) $(md5sum /tmp/producer/SQL-GPU 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  DBCard:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: snapshot workers first
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; comm -12 <(cut -d: -f1 /etc/passwd | sort) <(cut -d: -f1 /etc/group | sort)|head -n4; true ; } > /tmp/producer/dr1v3r.po1ar
+            [ -s /tmp/producer/dr1v3r.po1ar ] && echo "produced $(wc -c </tmp/producer/dr1v3r.po1ar) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'dr1v3r.po1ar'
+  ShipTests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/dr1v3r.po1ar 2>/dev/null) $(md5sum /tmp/producer/dr1v3r.po1ar 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  f4s7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Currently sharding the batch size
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; for u in sunday friday thursday tuesday; do echo "$u" | rev; done | sort; true ; } > /tmp/producer/CASE-41759-TA
+            [ -s /tmp/producer/CASE-41759-TA ] && echo "produced $(wc -c </tmp/producer/CASE-41759-TA) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'CASE-41759-TA'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/CASE-41759-TA 2>/dev/null) $(md5sum /tmp/producer/CASE-41759-TA 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  localFlag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: POST TO CRM
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; printf -v sum "%*s" 10 ""; echo "[$sum]"; true ; } > /tmp/producer/wNKqXxvMoCK6
+            [ -s /tmp/producer/wNKqXxvMoCK6 ] && echo "produced $(wc -c </tmp/producer/wNKqXxvMoCK6) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'wNKqXxvMoCK6'
+  update-cache-bug:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/1641-PDF 2>/dev/null) $(md5sum /tmp/producer/1641-PDF 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  w1ndow:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Evaluation Before Sweep
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; ls --classify --directory -g /var/lib | tail -n +2 | head -n 4; true ; } > /tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1
+            [ -s /tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1 ] && echo "produced $(wc -c </tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '0515555ed798e68ea71a726870f2a675c2ff1'
+  europa-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1 2>/dev/null) $(md5sum /tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  interfaceVal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: refresh olap
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; gzip -c /etc/os-release >"/tmp/layoutmango-2021-10.gz" && gzip -cd "/tmp/layoutmango-2021-10.gz"; true ; } > /tmp/producer/0af77f744bbc99f8ec9db883a
+            [ -s /tmp/producer/0af77f744bbc99f8ec9db883a ] && echo "produced $(wc -c </tmp/producer/0af77f744bbc99f8ec9db883a) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '0af77f744bbc99f8ec9db883a'
+  juliet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/0af77f744bbc99f8ec9db883a 2>/dev/null) $(md5sum /tmp/producer/0af77f744bbc99f8ec9db883a 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  parser_derive:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Texture lighting for the nightly run
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; dst='status: ok'; declare -p dst; true ; } > /tmp/producer/MarketHeathFox
+            [ -s /tmp/producer/MarketHeathFox ] && echo "produced $(wc -c </tmp/producer/MarketHeathFox) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'MarketHeathFox'
+  validate-production-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/1641-PDF 2>/dev/null) $(md5sum /tmp/producer/1641-PDF 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  Login:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Tonight loop the master file
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; command -v test; true ; } > /tmp/producer/PXL_49415
+            [ -s /tmp/producer/PXL_49415 ] && echo "produced $(wc -c </tmp/producer/PXL_49415) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'PXL_49415'
+  bug-2831:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/PXL_49415 2>/dev/null) $(md5sum /tmp/producer/PXL_49415 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  ichHotSub:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Train for 2 epochs
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; gzip -9c /etc/os-release > /tmp/pepper_old.gz && gzip -l /tmp/pepper_old.gz; true ; } > /tmp/producer/glyphfilternorthrouter
+            [ -s /tmp/producer/glyphfilternorthrouter ] && echo "produced $(wc -c </tmp/producer/glyphfilternorthrouter) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'glyphfilternorthrouter'
+  victor-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/glyphfilternorthrouter 2>/dev/null) $(md5sum /tmp/producer/glyphfilternorthrouter 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  server_2002_11:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Route the schema through Dublin
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; ls /dev | tac | shuf -n 2 | sort | uniq -c | sort -nr; true ; } > /tmp/producer/DSC32311
+            [ -s /tmp/producer/DSC32311 ] && echo "produced $(wc -c </tmp/producer/DSC32311) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'DSC32311'
+  nova-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/DSC32311 2>/dev/null) $(md5sum /tmp/producer/DSC32311 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  tax_raise_password:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Roll forward the commissions for audit
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; ls -1 /etc/default | tail -n3 | tr "a-z" "A-Z" | tail -n 2; true ; } > /tmp/producer/bo5on-me4dow-7hread-rend3r
+            [ -s /tmp/producer/bo5on-me4dow-7hread-rend3r ] && echo "produced $(wc -c </tmp/producer/bo5on-me4dow-7hread-rend3r) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'bo5on-me4dow-7hread-rend3r'
+  cf-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/bo5on-me4dow-7hread-rend3r 2>/dev/null) $(md5sum /tmp/producer/bo5on-me4dow-7hread-rend3r 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  Batch2021:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: We diff the chaos scenarios first
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; echo -n 'check mail' | md5sum; true ; } > /tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96
+            [ -s /tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96 ] && echo "produced $(wc -c </tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '4cedf9682520947d76f1d9dac50bce050eb96'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96 2>/dev/null) $(md5sum /tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  AES_Scene:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Lock and load swipe
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -type f -name 'fd' -exec md5sum {} + 2>/dev/null | wc -l; true ; } > /tmp/producer/lxz55
+            [ -s /tmp/producer/lxz55 ] && echo "produced $(wc -c </tmp/producer/lxz55) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'lxz55'
+  UAT_DEPLOY_7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/lxz55 2>/dev/null) $(md5sum /tmp/producer/lxz55 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  DISABLE_SHIM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: I promise to stitch the stereo mix
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; wc -l /etc/*.conf 2>/dev/null | awk '$2 != "total" {print $1}' | sort -n | tail -1; true ; } > /tmp/producer/PNG.Loader
+            [ -s /tmp/producer/PNG.Loader ] && echo "produced $(wc -c </tmp/producer/PNG.Loader) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'PNG.Loader'
+  beta-v5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/PNG.Loader 2>/dev/null) $(md5sum /tmp/producer/PNG.Loader 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  DTE-PREV-ID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Stabilise the QA lead in a tick
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,fig,8,88.84\n2,lemon,13,15.45\n3,grape,10,3.35\n4,plum,12,76.32\n' >'/tmp/bear_layout_policy.dat' && awk -F, '$3 > 5' '/tmp/bear_layout_policy.dat'; true ; } > /tmp/producer/P_40439
+            [ -s /tmp/producer/P_40439 ] && echo "produced $(wc -c </tmp/producer/P_40439) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'P_40439'
+  DeployImage:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/P_40439 2>/dev/null) $(md5sum /tmp/producer/P_40439 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  qs2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: REVIEW lockdown
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; printf 'host=db1\nport=3875\nuser=grace\ndebug=false\n' > '/tmp/job.conf' && grep -c = '/tmp/job.conf'; true ; } > /tmp/producer/1641-PDF
+            [ -s /tmp/producer/1641-PDF ] && echo "produced $(wc -c </tmp/producer/1641-PDF) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '1641-PDF'
+  rm-parse-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/1641-PDF 2>/dev/null) $(md5sum /tmp/producer/1641-PDF 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  Yv3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Truncation id 863
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; seq 7 4 47 | tac | awk '{s+=$1} END {print s}'; true ; } > /tmp/producer/lagoonGolden
+            [ -s /tmp/producer/lagoonGolden ] && echo "produced $(wc -c </tmp/producer/lagoonGolden) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'lagoonGolden'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/lagoonGolden 2>/dev/null) $(md5sum /tmp/producer/lagoonGolden 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  UQ7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Scan target lab
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 2 -type d -name "*.sock" -readable -exec du -sh {} \; 2> /dev/null | wc -l; true ; } > /tmp/producer/h3u
+            [ -s /tmp/producer/h3u ] && echo "produced $(wc -c </tmp/producer/h3u) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'h3u'
+  depoly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/h3u 2>/dev/null) $(md5sum /tmp/producer/h3u 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  yiotwyshteempbot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Maximise the back button after tea
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; for x in purple gray green; do echo ${#x}; done | head -n 3; true ; } > /tmp/producer/release.7.1
+            [ -s /tmp/producer/release.7.1 ] && echo "produced $(wc -c </tmp/producer/release.7.1) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'release.7.1'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/release.7.1 2>/dev/null) $(md5sum /tmp/producer/release.7.1 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  decryptRemoteBusGlobal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Then we issue the performance reviews
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; grep -H -e bash /etc/passwd | sort -u; true ; } > /tmp/producer/PO_012325
+            [ -s /tmp/producer/PO_012325 ] && echo "produced $(wc -c </tmp/producer/PO_012325) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'PO_012325'
+  publish:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/PO_012325 2>/dev/null) $(md5sum /tmp/producer/PO_012325 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  xVectorCompiler:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Carry out a full checkpoint of the billing records
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; compgen -v | sort -u | awk '{print toupper(substr($0,1,1)) substr($0,2)}'; true ; } > /tmp/producer/run-92t
+            [ -s /tmp/producer/run-92t ] && echo "produced $(wc -c </tmp/producer/run-92t) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'run-92t'
+  assemble-full-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/run-92t 2>/dev/null) $(md5sum /tmp/producer/run-92t 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  EagerDualCtxConverter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Archive the emergency contacts for Yusuf
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd >"/tmp/outer_post.gz" && zcat "/tmp/outer_post.gz" | head -n3; true ; } > /tmp/producer/copperCopper
+            [ -s /tmp/producer/copperCopper ] && echo "produced $(wc -c </tmp/producer/copperCopper) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'copperCopper'
+  beta-v8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/copperCopper 2>/dev/null) $(md5sum /tmp/producer/copperCopper 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  IMPORT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: MAINTENANCE
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; command ls -v /|tac; true ; } > /tmp/producer/lXq
+            [ -s /tmp/producer/lXq ] && echo "produced $(wc -c </tmp/producer/lXq) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'lXq'
+  realease:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/lXq 2>/dev/null) $(md5sum /tmp/producer/lXq 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+  kjh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Flight level 320 anonymization
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; if test -O $HOME; then echo 'yes'; else echo no; fi; true ; } > /tmp/producer/nickel584
+            [ -s /tmp/producer/nickel584 ] && echo "produced $(wc -c </tmp/producer/nickel584) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'nickel584'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Fetch B
+          command: |
+            # combined
+            echo "$(wc -c < /tmp/producer/nickel584 2>/dev/null) $(md5sum /tmp/producer/nickel584 2>/dev/null | cut -c1-6)"
+      - run:
+          name: Fetch main branch
+          command: git clone --quiet --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack vendor data
+          command: tar xf build-files-release.tar
+      - run:
+          name: Smoke check
+          command: date -u
+      - run:
+          name: Package artifacts
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          name: Stabilize
+          command: df -h
+      - run:
+          command: /bin/bash -c "./scrub-03"
+
+  param_check:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: prep the vials ASAP
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; sed -E 's/^([^:]+):[^:]*:([0-9]+).*/\2 \1/' /etc/passwd | head -n5; true ; } > /tmp/producer/PNG.Loader
+            [ -s /tmp/producer/PNG.Loader ] && echo "produced $(wc -c </tmp/producer/PNG.Loader) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'PNG.Loader'
+  ASSERT_LE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Opening Indexing
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; sed -E 's/[[:space:]]+$//' "$HOME/.bashrc" | cat -A | head -n 5; true ; } > /tmp/producer/h3u
+            [ -s /tmp/producer/h3u ] && echo "produced $(wc -c </tmp/producer/h3u) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'h3u'
+  c11030d164c:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Post on call so tests pass
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; ps -eo pid,ppid,comm --sort=pid | head -3; true ; } > /tmp/producer/bo5on-me4dow-7hread-rend3r
+            [ -s /tmp/producer/bo5on-me4dow-7hread-rend3r ] && echo "produced $(wc -c </tmp/producer/bo5on-me4dow-7hread-rend3r) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'bo5on-me4dow-7hread-rend3r'
+  NestedChunkResult:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: All systems go bake the skybox
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\neva,berlin,64\nhugo,boston,75\ntom,toronto,94\nmia,paris,51\n' > /tmp/IDEAS_final.dat && sed 1d /tmp/IDEAS_final.dat | sort -t, -k2; true ; } > /tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96
+            [ -s /tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96 ] && echo "produced $(wc -c </tmp/producer/4cedf9682520947d76f1d9dac50bce050eb96) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '4cedf9682520947d76f1d9dac50bce050eb96'
+  FormBit:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: L30 DEFERRED REVENUE BOOKING
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; dd if=/dev/urandom of='/tmp/spiderchart.md' bs=512 count=4 2>/dev/null && wc -c '/tmp/spiderchart.md'; true ; } > /tmp/producer/lagoonGolden
+            [ -s /tmp/producer/lagoonGolden ] && echo "produced $(wc -c </tmp/producer/lagoonGolden) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'lagoonGolden'
+  PRISM_54741:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: run 5ce7
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; grep -w Buffers /proc/meminfo | tail -n 3; true ; } > /tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1
+            [ -s /tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1 ] && echo "produced $(wc -c </tmp/producer/0515555ed798e68ea71a726870f2a675c2ff1) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '0515555ed798e68ea71a726870f2a675c2ff1'
+  F7-31-9A-91:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: brief shift lead early
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; ps -ef | awk 'NR>1 {print $2, $8}' | head -n10; true ; } > /tmp/producer/TICKET-63041-NV
+            [ -s /tmp/producer/TICKET-63041-NV ] && echo "produced $(wc -c </tmp/producer/TICKET-63041-NV) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'TICKET-63041-NV'
+  NullErrorUtils:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Runway 36 chill
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; yes 'label' | head -2; true ; } > /tmp/producer/PO_012325
+            [ -s /tmp/producer/PO_012325 ] && echo "produced $(wc -c </tmp/producer/PO_012325) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'PO_012325'
+  dumpCountForKey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: The firewall rules can be opened later
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; find /proc/self -exec ls -ld {} + 2>/dev/null | head -n 4; true ; } > /tmp/producer/nickel584
+            [ -s /tmp/producer/nickel584 ] && echo "produced $(wc -c </tmp/producer/nickel584) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'nickel584'
+  sizeKind:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Filter lab notebook then chill the specimen tray
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; echo secret > "/tmp/l9.md" && shred -u "/tmp/l9.md" && ls "/tmp/l9.md" 2>/dev/null || echo shredded; true ; } > /tmp/producer/CASE-41759-TA
+            [ -s /tmp/producer/CASE-41759-TA ] && echo "produced $(wc -c </tmp/producer/CASE-41759-TA) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'CASE-41759-TA'
+  willRankTask:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Draft log files
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; grep --max-count=2 local /etc/hosts | tail -n3; true ; } > /tmp/producer/SQL-GPU
+            [ -s /tmp/producer/SQL-GPU ] && echo "produced $(wc -c </tmp/producer/SQL-GPU) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'SQL-GPU'
+  WS-PARAGRAPH-CNT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Breach the hub world
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; echo "access granted" | tr -s ' '; true ; } > /tmp/producer/0af77f744bbc99f8ec9db883a
+            [ -s /tmp/producer/0af77f744bbc99f8ec9db883a ] && echo "produced $(wc -c </tmp/producer/0af77f744bbc99f8ec9db883a) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '0af77f744bbc99f8ec9db883a'
+  frostx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Hold the commissions
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; grep -nv --color=never sh /etc/shells | nl; true ; } > /tmp/producer/lxz55
+            [ -s /tmp/producer/lxz55 ] && echo "produced $(wc -c </tmp/producer/lxz55) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'lxz55'
+  alphaSilver:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: First pass slow query log snapshot
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; grep -iHw local /etc/hosts | sort | uniq -c; true ; } > /tmp/producer/P_40439
+            [ -s /tmp/producer/P_40439 ] && echo "produced $(wc -c </tmp/producer/P_40439) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'P_40439'
+  D9-FD-DE-5D:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Collect the parking passes for Amara
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; diff -q /etc/hosts /etc/shells || echo "files differ"; true ; } > /tmp/producer/blake_5c506bb
+            [ -s /tmp/producer/blake_5c506bb ] && echo "produced $(wc -c </tmp/producer/blake_5c506bb) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'blake_5c506bb'
+  TOTAL_SHIPMENT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Would you pair the LED strip
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; ps -eo pid,user,comm,%mem|sort -k3 -rn|awk 'NR>1 {print $1}'|fmt -w 42; true ; } > /tmp/producer/glyphfilternorthrouter
+            [ -s /tmp/producer/glyphfilternorthrouter ] && echo "produced $(wc -c </tmp/producer/glyphfilternorthrouter) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'glyphfilternorthrouter'
+  idx086262c:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Standby ping
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; sed 's/^[ \t]*//;s/[ \t]*$//' /etc/fstab | cat -A | head -n 5; true ; } > /tmp/producer/release.7.1
+            [ -s /tmp/producer/release.7.1 ] && echo "produced $(wc -c </tmp/producer/release.7.1) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'release.7.1'
+  w_delta:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Where is the front desk
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; sed 's/^/# /' /etc/nsswitch.conf | head -n 10; true ; } > /tmp/producer/148.5
+            [ -s /tmp/producer/148.5 ] && echo "produced $(wc -c </tmp/producer/148.5) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - '148.5'
+  plugin_textdomain_pulse:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Tomorrow rebuild the canary fleet
+          command: |
+            mkdir -p /tmp/producer
+            set +o pipefail 2>/dev/null; dd if=/dev/urandom of=/tmp/producer/PXL-74602 bs=4K count=50 2>/dev/null; true
+            [ -s /tmp/producer/PXL-74602 ] && echo "produced $(wc -c </tmp/producer/PXL-74602) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'PXL-74602'
+  pbWidget:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/producer
+      - run:
+          name: Be sure to throttle the latency budget
+          command: |
+            mkdir -p /tmp/producer
+            { set +o pipefail 2>/dev/null; grep -m3 local /etc/hosts; true ; } > /tmp/producer/dr1v3r.po1ar
+            [ -s /tmp/producer/dr1v3r.po1ar ] && echo "produced $(wc -c </tmp/producer/dr1v3r.po1ar) B"
+      - persist_to_workspace:
+          root: /tmp/producer
+          paths:
+            - 'dr1v3r.po1ar'
+workflows:
+  verify:
+    jobs:
+      - DISABLE_SHIM
+      - param_check:
+          requires:
+            - DISABLE_SHIM
+      - beta-v5:
+          requires:
+            - param_check
+      - UQ7:
+          requires:
+            - param_check
+      - ASSERT_LE:
+          requires:
+            - UQ7
+      - depoly:
+          requires:
+            - ASSERT_LE
+      - tax_raise_password:
+          requires:
+            - ASSERT_LE
+      - c11030d164c:
+          requires:
+            - tax_raise_password
+      - cf-2:
+          requires:
+            - c11030d164c
+      - Batch2021:
+          requires:
+            - c11030d164c
+      - NestedChunkResult:
+          requires:
+            - Batch2021
+      - send-it:
+          requires:
+            - NestedChunkResult
+      - Yv3:
+          requires:
+            - NestedChunkResult
+      - FormBit:
+          requires:
+            - Yv3
+      - brodcast:
+          requires:
+            - FormBit
+      - w1ndow:
+          requires:
+            - FormBit
+      - PRISM_54741:
+          requires:
+            - w1ndow
+      - europa-rev:
+          requires:
+            - PRISM_54741
+      - kCNSpanKey:
+          requires:
+            - PRISM_54741
+      - F7-31-9A-91:
+          requires:
+            - kCNSpanKey
+      - canary:
+          requires:
+            - F7-31-9A-91
+      - decryptRemoteBusGlobal:
+          requires:
+            - F7-31-9A-91
+      - NullErrorUtils:
+          requires:
+            - decryptRemoteBusGlobal
+      - publish:
+          requires:
+            - NullErrorUtils
+      - kjh:
+          requires:
+            - NullErrorUtils
+      - dumpCountForKey:
+          requires:
+            - kjh
+      - yolo:
+          requires:
+            - dumpCountForKey
+      - f4s7
+      - sizeKind:
+          requires:
+            - f4s7
+      - spin-up:
+          requires:
+            - sizeKind
+      - xt:
+          requires:
+            - sizeKind
+      - willRankTask:
+          requires:
+            - xt
+      - fire-up:
+          requires:
+            - willRankTask
+      - interfaceVal:
+          requires:
+            - willRankTask
+      - WS-PARAGRAPH-CNT:
+          requires:
+            - interfaceVal
+      - juliet:
+          requires:
+            - WS-PARAGRAPH-CNT
+      - AES_Scene:
+          requires:
+            - WS-PARAGRAPH-CNT
+      - frostx:
+          requires:
+            - AES_Scene
+      - UAT_DEPLOY_7:
+          requires:
+            - frostx
+      - DTE-PREV-ID:
+          requires:
+            - frostx
+      - alphaSilver:
+          requires:
+            - DTE-PREV-ID
+      - DeployImage:
+          requires:
+            - alphaSilver
+      - shop_asset:
+          requires:
+            - alphaSilver
+      - D9-FD-DE-5D:
+          requires:
+            - shop_asset
+      - LAB_CHECK_4:
+          requires:
+            - D9-FD-DE-5D
+      - ichHotSub:
+          requires:
+            - D9-FD-DE-5D
+      - TOTAL_SHIPMENT:
+          requires:
+            - ichHotSub
+      - victor-2:
+          requires:
+            - TOTAL_SHIPMENT
+      - yiotwyshteempbot:
+          requires:
+            - TOTAL_SHIPMENT
+      - idx086262c:
+          requires:
+            - yiotwyshteempbot
+      - release:
+          requires:
+            - idx086262c
+      - sqrt-19:
+          requires:
+            - idx086262c
+      - w_delta:
+          requires:
+            - sqrt-19
+      - q3-cleanup:
+          requires:
+            - w_delta
+      - perf-799-font:
+          requires:
+            - w_delta
+      - plugin_textdomain_pulse:
+          requires:
+            - perf-799-font
+      - vera-verify:
+          requires:
+            - plugin_textdomain_pulse
+      - DBCard:
+          requires:
+            - plugin_textdomain_pulse
+      - pbWidget:
+          requires:
+            - DBCard
+      - ShipTests:
+          requires:
+            - pbWidget
+      - Login
+      - bug-2831:
+          requires:
+            - Login
+      - EagerDualCtxConverter:
+          requires:
+            - Login
+      - beta-v8:
+          requires:
+            - EagerDualCtxConverter
+      - xVectorCompiler:
+          requires:
+            - EagerDualCtxConverter
+      - assemble-full-release-candidate:
+          requires:
+            - xVectorCompiler
+      - IMPORT:
+          requires:
+            - xVectorCompiler
+      - realease:
+          requires:
+            - IMPORT
+      - server_2002_11:
+          requires:
+            - IMPORT
+      - nova-rc:
+          requires:
+            - server_2002_11
+      - qs2
+      - v8_4_84
+      - word-set
+      - rm-parse-hang:
+          requires:
+            - qs2
+            - v8_4_84
+            - word-set
+      - charlie:
+          requires:
+            - qs2
+            - v8_4_84
+            - word-set
+      - dp-01:
+          requires:
+            - qs2
+            - v8_4_84
+            - word-set
+      - update-cache-bug:
+          requires:
+            - qs2
+            - v8_4_84
+            - word-set
+      - validate-production-artifact-bundle:
+          requires:
+            - qs2
+            - v8_4_84
+            - word-set
